@@ -1,6 +1,7 @@
 <template>
   <div id="home">
     <new-client-modal />
+    <edit-client-modal />
       <div class="row p-3 mx-0 bg-light">
             <p class="col-10 h4 text-start p-2 text-primary">Clients</p>
             <button 
@@ -30,8 +31,22 @@
                 <span v-for="provider, index in client.providers" :key="index">{{ provider.id }}, </span>
               </td>
               <td>
-                  <span><button class="btn btn-sm btn-secondary mx-1">Edit</button></span>
-                  <span><button class="btn btn-sm btn-danger">Delete</button></span>
+                  <span>
+                    <button
+                      class="btn btn-sm btn-secondary mx-1"
+                      data-bs-toggle="modal"
+                      data-bs-target="#edit-client-modal"
+                    >
+                    Edit</button>
+                  </span>
+                  <span>
+                    <button
+                      class="btn btn-sm btn-danger"
+                      data-bs-toggle="modal"
+                      data-bs-target="#edit-client-modal"
+                      @click="setDeleteClient"
+                     >
+                     Delete</button></span>
               </td>
           </tr>
         </tbody>
@@ -42,22 +57,23 @@
 <script>
 import axios from "axios";
 import NewClientModal from './NewClientModal.vue';
+import EditClientModal from './EditClientModal.vue';
 
 export default {
-  components: { NewClientModal },
+  components: { NewClientModal, EditClientModal },
   name: "Home",
   data() {
     return {
       clients: null,
       providers: null,
       clientProvider: [],
-      formId: null,
+      deleteClient: false,
     };
   },
 
   async created() {
-    let clientsdata = await (await axios.get("http://localhost:3000/clients")).data;
-    let providersdata = await (await axios.get("http://localhost:3000/providers")).data;
+    let clientsdata = (await axios.get("http://localhost:3000/clients")).data;
+    let providersdata = (await axios.get("http://localhost:3000/providers")).data;
     this.clients = clientsdata;
     this.providers = providersdata;
   }

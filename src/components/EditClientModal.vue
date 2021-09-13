@@ -1,19 +1,20 @@
 <template>
   <div>
     <!-- Modal -->
-    <div class="modal fade" id="new-client-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="edit-client-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="NewClientModalLabel">New Client</h5>
+                <h5 class="modal-title" id="EditClientModalLabel">Edit Client</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <Form :id="formId" />
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-danger position-absolute start-0 mx-4 ">Delete Client</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" :form="formId" class="btn btn-primary">Add Client</button>
+                <button type="submit" :form="formId" class="btn btn-success">Save Client</button>
             </div>
             </div>
         </div>
@@ -26,10 +27,10 @@ import Form from './Form.vue'
 
 export default {
   components: { Form },
-    name: "NewClientModal",
+    name: "EditClientModal",
     data() {
       return {
-        formId: "new-client"
+        formId: "edit-client",
       }
     }
 }
