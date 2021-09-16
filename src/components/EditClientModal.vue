@@ -5,11 +5,11 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="EditClientModalLabel">Edit Client</h5>
+                <h5 class="modal-title" id="EditClientModalLabel">Edit client</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <Form :id="formId" />
+                <Form :id="formId" :currentClient="currentClient" :providerslist="providerslist"/>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger position-absolute start-0 mx-4 ">Delete Client</button>
@@ -28,6 +28,7 @@ import Form from './Form.vue'
 export default {
   components: { Form },
     name: "EditClientModal",
+    props: ["currentClient", "providerslist"],
     data() {
       return {
         formId: "edit-client",

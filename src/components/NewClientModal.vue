@@ -9,7 +9,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <Form :id="formId" />
+                <new-client-form :id="formId" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import Form from './Form.vue'
+import NewClientForm from './NewClientForm.vue'
 
 export default {
-  components: { Form },
+  components: { NewClientForm },
     name: "NewClientModal",
     data() {
       return {

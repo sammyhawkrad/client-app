@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <new-client-modal />
-    <edit-client-modal />
+    <edit-client-modal :currentClient="currentClient" :providerslist="providerslist"/>
       <div class="row p-3 mx-0 bg-light">
             <p class="col-10 h4 text-start p-2 text-primary">Clients</p>
             <button 
@@ -36,6 +36,7 @@
                       class="btn btn-sm btn-secondary mx-1"
                       data-bs-toggle="modal"
                       data-bs-target="#edit-client-modal"
+                      @click="getIndex(client)"
                     >
                     Edit</button>
                   </span>
@@ -44,13 +45,14 @@
                       class="btn btn-sm btn-danger"
                       data-bs-toggle="modal"
                       data-bs-target="#edit-client-modal"
-                      @click="setDeleteClient"
+                      @click="getIndex(client)"
                      >
                      Delete</button></span>
               </td>
           </tr>
         </tbody>
       </table>
+      <button @click="providerMap()">provider map</button>
   </div>
 </template>
 
@@ -66,8 +68,8 @@ export default {
     return {
       clients: null,
       providers: null,
-      clientProvider: [],
-      deleteClient: false,
+      providerslist: [],
+      currentClient: {}
     };
   },
 
@@ -76,7 +78,44 @@ export default {
     let providersdata = (await axios.get("http://localhost:3000/providers")).data;
     this.clients = clientsdata;
     this.providers = providersdata;
-  }
+    let plist = [];
+    providersdata.forEach(function(provider){
+    plist.push(provider.name);
+    })
+    this.providerslist = plist;
+  },
+
+  methods: {
+    getIndex(client) {
+      const clientObj = Object.assign({}, client);
+      this.currentClient = clientObj;
+      let p = this.currentClient.providers;
+       const plist = [];
+       p.forEach(provider => {
+          plist.push(provider.id)
+       });
+       this.currentClient.providersArray = plist;
+    },
+
+    providerMap() {
+        const cp = this.clients.map(client => { 
+          return JSON.parse(JSON.stringify(client.providers)); 
+        });
+        // let cpMap = cp.map(
+        //   (c, index) => {
+        //     let pr = this.providers
+        //     let temp = pr.find(provider => provider.id === cp[index].id);
+        //     if(temp.providers) {
+        //       c.providers = temp.providers;
+        //     }
+        //     return c;
+        //   }
+        // ) 
+        console.log(cp);
+    },
+
+
+  },
 }
 </script>
 

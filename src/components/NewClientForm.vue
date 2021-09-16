@@ -3,39 +3,15 @@
         <div class="mb-3"> <!-- Text inputs start-->
             <div class="row mb-3"> 
                <label class="col-sm-2 col-form-label" for="name">Name:</label>
-               <div class="col-sm-7">
-                  <input
-                   :value="currentClient.name" 
-                   @input="$emit('input', $event.target.value)" 
-                   class="form-control" 
-                   type="text" 
-                   id="name" 
-                   name="name">
-               </div>
+               <div class="col-sm-7"><input class="form-control" type="text" id="name" name="name"></div>
             </div>
             <div class="row mb-3">
                <label class="col-sm-2 col-form-label" for="email">Email:</label>
-               <div class="col-sm-7">
-                  <input
-                   :value="currentClient.email" 
-                   @input="$emit('input', $event.target.value)" 
-                   class="form-control" 
-                   type="text" 
-                   id="email" 
-                   name="email">
-               </div>
+               <div class="col-sm-7"><input class="form-control" type="text" id="email" name="email"></div>
             </div>
             <div class="row mb-3">
                <label class="col-sm-2 col-form-label" for="phone">Phone:</label>
-               <div class="col-sm-7">
-                  <input
-                   :value="currentClient.phone" 
-                   @input="$emit('input', $event.target.value)"                   
-                   class="form-control" 
-                   type="text" 
-                   id="phone" 
-                   name="phone">
-               </div>
+               <div class="col-sm-7"><input class="form-control" type="text" id="phone" name="phone"></div>
             </div>
             <div class="row mb-3">
                <label class="col-sm-2 col-form-label" for="addprovider">Providers: </label>
@@ -45,14 +21,7 @@
         </div> <!-- Text inputs end-->
         <fieldset class="offset-2 p-3 border rounded"> <!-- Checkbox inputs start-->
            <div class="d-flex align-items-center">
-              <input
-               @change="$emit()"
-               class="col-sm form-check-input" 
-               type="checkbox" 
-               ref="Mantro"
-               name="providers" 
-               value="Mantro" 
-               id="provider-1">
+              <input class="col-sm form-check-input" type="checkbox" name="providers" value="Mantro" id="provider-1">
               <label class="form-check-label mx-3 col-sm-4" for="provider-1">Mantro</label>
               <button class="btn col-sm bg-transparent"><i class="bi bi-pencil-square"></i></button>
               <button class="btn col-sm bg-transparent"><i class="bi bi-trash-fill"></i></button>
@@ -82,34 +51,15 @@
               <button class="btn col-sm bg-transparent"><i class="bi bi-trash-fill"></i></button>
            </div>
         </fieldset> <!-- Checkbox inputs end-->
+
      </form>
 </template>
 
 <script>
 export default {
- name: "Form",
- props: ["formId", "currentClient", "providerslist"],
+ name: "NewClientForm",
+ props: ["formId"],
  emits: ["input"],
- methods: {
-    providersList() {
-       let p = this.currentClient.providers;
-       const plist = [];
-       p.forEach(provider => {
-          plist.push(provider.id)
-       });
-       return plist;
-    },
-
-    refMatch() {
-       if (this.$refs) {
-          console.log(this.$refs["Mantro"].value);
-       }
-    }
- },
-
- mounted() {
-    this.refMatch()
- }
 }
 </script>
 
