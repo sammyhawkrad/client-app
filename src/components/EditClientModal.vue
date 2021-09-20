@@ -9,7 +9,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <Form :id="formId" :currentClient="currentClient" :providerslist="providerslist"/>
+                <Form :id="formId" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger position-absolute start-0 mx-4 ">Delete Client</button>
@@ -28,7 +28,6 @@ import Form from './Form.vue'
 export default {
   components: { Form },
     name: "EditClientModal",
-    props: ["currentClient", "providerslist"],
     data() {
       return {
         formId: "edit-client",

@@ -5,8 +5,7 @@
                <label class="col-sm-2 col-form-label" for="name">Name:</label>
                <div class="col-sm-7">
                   <input
-                   :value="currentClient.name" 
-                   @input="$emit('input', $event.target.value)" 
+                   v-model="currentClient.name" 
                    class="form-control" 
                    type="text" 
                    id="name" 
@@ -17,8 +16,7 @@
                <label class="col-sm-2 col-form-label" for="email">Email:</label>
                <div class="col-sm-7">
                   <input
-                   :value="currentClient.email" 
-                   @input="$emit('input', $event.target.value)" 
+                   v-model="currentClient.email" 
                    class="form-control" 
                    type="text" 
                    id="email" 
@@ -29,8 +27,7 @@
                <label class="col-sm-2 col-form-label" for="phone">Phone:</label>
                <div class="col-sm-7">
                   <input
-                   :value="currentClient.phone" 
-                   @input="$emit('input', $event.target.value)"                   
+                   v-model="currentClient.phone" 
                    class="form-control" 
                    type="text" 
                    id="phone" 
@@ -46,7 +43,6 @@
         <fieldset class="offset-2 p-3 border rounded"> <!-- Checkbox inputs start-->
            <div class="d-flex align-items-center">
               <input
-               @change="$emit()"
                class="col-sm form-check-input" 
                type="checkbox" 
                ref="Mantro"
@@ -86,25 +82,21 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
  name: "Form",
- props: ["formId", "currentClient", "providerslist"],
- emits: ["input"],
+ props: ["formId"],
  methods: {
-    providersList() {
-       let p = this.currentClient.providers;
-       const plist = [];
-       p.forEach(provider => {
-          plist.push(provider.id)
-       });
-       return plist;
-    },
-
     refMatch() {
        if (this.$refs) {
           console.log(this.$refs["Mantro"].value);
        }
     }
+ },
+
+ computed: {
+    ...mapState(['clients', 'providers', 'currentClient'])
  },
 
  mounted() {
