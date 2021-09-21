@@ -49,7 +49,7 @@
                v-model="currentClient.providersIds" 
                :value="provider.id" 
                :id="provider.name.toLowerCase() + '-checkbox'">
-              <label class="form-check-label mx-3 col-sm-4" for="provider-1">{{ provider.name }}</label>
+              <label class="form-check-label mx-3 col-sm-4" :for="provider.name.toLowerCase() + '-checkbox'">{{ provider.name }}</label>
               <button class="btn col-sm bg-transparent"><i class="bi bi-pencil-square"></i></button>
               <button class="btn col-sm bg-transparent"><i class="bi bi-trash-fill"></i></button>
            </div>
