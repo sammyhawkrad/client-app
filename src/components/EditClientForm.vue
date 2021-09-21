@@ -41,39 +41,15 @@
             </div>
         </div> <!-- Text inputs end-->
         <fieldset class="offset-2 p-3 border rounded"> <!-- Checkbox inputs start-->
-           <div class="d-flex align-items-center">
+           <div v-for="provider in this.providers" :key="provider.id" class="d-flex align-items-center">
               <input
-               class="col-sm form-check-input" 
-               type="checkbox" 
-               ref="Mantro"
+               class="col-sm form-check-input"
                name="providers" 
-               value="Mantro" 
-               id="provider-1">
-              <label class="form-check-label mx-3 col-sm-4" for="provider-1">Mantro</label>
-              <button class="btn col-sm bg-transparent"><i class="bi bi-pencil-square"></i></button>
-              <button class="btn col-sm bg-transparent"><i class="bi bi-trash-fill"></i></button>
-           </div>
-           <div class="d-flex align-items-center">
-              <input class="col-sm form-check-input" type="checkbox" name="providers" value="Comcur" id="provider-2">
-              <label class="form-check-label mx-3 col-sm-4" for="provider-2">Comcur</label>
-              <button class="btn col-sm bg-transparent"><i class="bi bi-pencil-square"></i></button>
-              <button class="btn col-sm bg-transparent"><i class="bi bi-trash-fill"></i></button>
-           </div>
-           <div class="d-flex align-items-center">
-              <input class="col-sm form-check-input" type="checkbox" name="providers" value="Reversus" id="provider-3">
-              <label class="form-check-label mx-3 col-sm-4" for="provider-3">Reversus</label>
-              <button class="btn col-sm bg-transparent"><i class="bi bi-pencil-square"></i></button>
-              <button class="btn col-sm bg-transparent"><i class="bi bi-trash-fill"></i></button>
-           </div>
-           <div class="d-flex align-items-center">
-              <input class="col-sm form-check-input" type="checkbox" name="providers" value="Frenex" id="provider-4">
-              <label class="form-check-label mx-3 col-sm-4" for="provider-4">Frenex</label>
-              <button class="btn col-sm bg-transparent"><i class="bi bi-pencil-square"></i></button>
-              <button class="btn col-sm bg-transparent"><i class="bi bi-trash-fill"></i></button>
-           </div>
-           <div class="d-flex align-items-center">
-              <input class="col-sm form-check-input" type="checkbox" name="providers" value="Gadtron" id="provider-5">
-              <label class="form-check-label mx-3 col-sm-4" for="provider-5">Gadtron</label>
+               type="checkbox"
+               v-model="currentClient.providersIds" 
+               :value="provider.id" 
+               :id="provider.name.toLowerCase() + '-checkbox'">
+              <label class="form-check-label mx-3 col-sm-4" for="provider-1">{{ provider.name }}</label>
               <button class="btn col-sm bg-transparent"><i class="bi bi-pencil-square"></i></button>
               <button class="btn col-sm bg-transparent"><i class="bi bi-trash-fill"></i></button>
            </div>
@@ -85,23 +61,22 @@
 import { mapState } from "vuex";
 
 export default {
- name: "Form",
+ name: "EditClientForm",
  props: ["formId"],
- methods: {
-    refMatch() {
-       if (this.$refs) {
-          console.log(this.$refs["Mantro"].value);
-       }
+ data() {
+    return {
+       
     }
+ },
+
+ methods: {
+ 
  },
 
  computed: {
     ...mapState(['clients', 'providers', 'currentClient'])
  },
 
- mounted() {
-    this.refMatch()
- }
 }
 </script>
 

@@ -9,7 +9,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <Form :id="formId" />
+                <edit-client-form :id="formId" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger position-absolute start-0 mx-4 ">Delete Client</button>
@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import Form from './Form.vue'
+import EditClientForm from './EditClientForm.vue'
 
 export default {
-  components: { Form },
+  components: { EditClientForm },
     name: "EditClientModal",
     data() {
       return {
