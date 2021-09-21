@@ -28,7 +28,11 @@
               <td>{{ client.email }}</td>
               <td>{{ client.phone }}</td>
               <td>
-                <span v-for="provider, index in client.providers" :key="index">{{ provider.id }}, </span>
+                <span v-for="p, index in client.providers" :key="p.id">
+                  <span  v-for="provider in this.providers" :key="provider.id">
+                    <span v-if="p.id === provider.id">{{ provider.name }}<span v-if="index != parseInt(client.providers.length)-1">, </span></span>                    
+                  </span> 
+                </span>
               </td>
               <td>
                   <span>
@@ -86,7 +90,7 @@ export default {
           plist.push(provider.id)
        });
        this.currentClient.providersIds = plist
-    }
+    },
 
   },
 

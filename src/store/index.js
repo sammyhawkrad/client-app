@@ -36,9 +36,7 @@ export default createStore({
     }
   },
   getters: {
-      testgetter:state => {
-          return state.test;
-      },
+
 
   },
   modules: {}
