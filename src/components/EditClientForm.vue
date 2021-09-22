@@ -1,5 +1,5 @@
 <template> 
-     <form class="col offset-2" :id="formId" action="">
+     <form class="col offset-2" :id="formId" @submit.prevent="processForm">
         <div class="mb-3"> <!-- Text inputs start-->
             <div class="row mb-3"> 
                <label class="col-sm-2 col-form-label" for="name">Name:</label>
@@ -70,11 +70,28 @@ export default {
  },
 
  methods: {
- 
+    processForm() {
+       let clientInfo = JSON.parse(JSON.stringify(this.currentClient));
+       let p = clientInfo.providersIds;
+       let pArray = [];
+       p.forEach(e => {
+          e = Array.of(e);
+          e = Object.assign({}, e) 
+          pArray.push(e)
+       });
+      pArray.forEach(e => {
+         e['id'] = e['0']
+         delete e['0']
+      });
+      clientInfo.providers = pArray;
+      delete clientInfo.providersIds;
+      console.log(clientInfo);
+      return clientInfo;
+    }
  },
 
  computed: {
-    ...mapState(['clients', 'providers', 'currentClient'])
+    ...mapState(['clients', 'providers', 'currentClient']),
  },
 
 }
