@@ -1,5 +1,5 @@
 <template> 
- <form class="col offset-2" :id="formId" @submit.prevent="processForm">
+ <form class="col offset-2" id="new-client" @submit.prevent="processForm">
         <div class="mb-3"> <!-- Text inputs start-->
             <div class="row mb-3"> 
                <label class="col-sm-2 col-form-label" for="new-name">Name:</label>
@@ -62,7 +62,6 @@ import { mapState } from 'vuex';
 
 export default {
  name: "NewClientForm",
- props: ["formId"],
  data() {
     return {
        newclient: {

@@ -1,5 +1,5 @@
 <template> 
-     <form class="col offset-2" :id="formId" @submit.prevent="processForm">
+     <form class="col offset-2" id="edit-client" @submit.prevent="processForm">
         <div class="mb-3"> <!-- Text inputs start-->
             <div class="row mb-3"> 
                <label class="col-sm-2 col-form-label" for="name">Name:</label>
@@ -62,13 +62,6 @@ import { mapState } from "vuex";
 
 export default {
  name: "EditClientForm",
- props: ["formId"],
- data() {
-    return {
-       
-    }
- },
-
  methods: {
     processForm() {
        let clientInfo = JSON.parse(JSON.stringify(this.currentClient));
