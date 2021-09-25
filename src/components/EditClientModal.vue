@@ -12,7 +12,11 @@
                 <edit-client-form />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger position-absolute start-0 mx-4 ">Delete Client</button>
+                <button
+                 type="button" 
+                 class="btn btn-danger position-absolute start-0 mx-4"
+                 @click="deleteClient"
+                >Delete Client</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <button type="submit" form="edit-client" class="btn btn-success">Save Client</button>
             </div>
@@ -23,11 +27,23 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { mapState } from 'vuex'
 import EditClientForm from './EditClientForm.vue'
 
 export default {
   components: { EditClientForm },
-    name: "EditClientModal",
+  name: "EditClientModal",
+  computed: {
+    ...mapState(['currentClient'])
+  },
+  methods: {
+    deleteClient(clientId) {
+       clientId = this.currentClient.id
+       axios.delete(`http://localhost:3000/clients/${clientId}`, this.currentClient)
+       this.$store.dispatch('getClients');
+    },
+  }
 }
 </script>
 
