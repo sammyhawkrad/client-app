@@ -1,5 +1,5 @@
 <template> 
- <form class="col offset-2" id="new-client" @submit.prevent="processForm">
+ <form class="col offset-2" id="new-client" @submit.prevent="saveNewClient">
         <div class="mb-3"> <!-- Text inputs start-->
             <div class="row mb-3"> 
                <label class="col-sm-2 col-form-label" for="new-name">Name:</label>
@@ -59,6 +59,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import axios from "axios";
 
 export default {
  name: "NewClientForm",
@@ -89,13 +90,18 @@ export default {
       });
       clientInfo.providers = pArray;
       delete clientInfo.providersIds;
-      console.log(clientInfo);
       return clientInfo;
-    }
+    },
+
+    async saveNewClient() {
+       const newClient = await this.processForm();
+       axios.post('http://localhost:3000/clients', newClient)
+       this.$store.dispatch('getClients');
+    },
  },
 
  computed: {
-    ...mapState(['providers'])
+    ...mapState(['providers']),
  }
 }
 </script>
