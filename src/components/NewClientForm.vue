@@ -97,7 +97,18 @@ export default {
        const newClient = await this.processForm();
        axios.post('http://localhost:3000/clients', newClient)
        this.$store.dispatch('getClients');
+       this.resetform();
     },
+
+    resetform() {
+       let blankform = {
+          name: "",
+         email: "",
+         phone: "",
+         providersIds: []
+       };
+       this.newclient = blankform; 
+    }
  },
 
  computed: {
