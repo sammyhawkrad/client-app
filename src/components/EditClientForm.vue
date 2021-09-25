@@ -82,11 +82,11 @@ export default {
       return clientInfo;
     },
 
-    async updateClient() {
-       const updated = await this.processForm();
-       axios.post('http://localhost:3000/clients', updated)
-
-       console.log(updated);
+    async updateClient(clientId) {
+       const client = await this.processForm();
+       clientId = client.id
+       axios.put(`http://localhost:3000/clients/${clientId}`, client)
+       this.$store.dispatch('getClients');
     },
  },
 
