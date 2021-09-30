@@ -95,7 +95,7 @@ export default {
 
     async saveNewClient() {
        const newClient = await this.processForm();
-       axios.post('http://localhost:3000/clients', newClient)
+       axios.post('api/clients', newClient)
        this.$store.dispatch('getClients');
        this.resetform();
     },

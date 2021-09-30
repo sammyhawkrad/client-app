@@ -62,17 +62,11 @@
 <script>
 import NewClientModal from './NewClientModal.vue';
 import EditClientModal from './EditClientModal.vue';
-import { mapActions, mapGetters, mapState } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   components: { NewClientModal, EditClientModal },
-  name: "Home",
-  data() {
-    return {
-
-    };
-  },
-
+  name: 'Home',
   created() {
     this.$store.dispatch('getClients');
     this.$store.dispatch('getProviders');
@@ -95,16 +89,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['clients', 'providers', 'currentClient']),
-    ...mapGetters([]),
-    ...mapActions([])
+    ...mapState(['clients', 'providers', 'currentClient'])
   }
 }
 </script>
-
-<style scoped>
-#home {
-  margin-top:10%;
-}
-
-</style>

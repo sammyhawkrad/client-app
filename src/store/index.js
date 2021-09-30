@@ -23,21 +23,16 @@ export default createStore({
   },
   actions: {
     async getClients({commit}) {
-      let clientsdata = (await axios.get("http://localhost:3000/clients")).data;
+      let clientsdata = (await axios.get("api/clients")).data;
       commit('loadClients', clientsdata);
     },
     async getProviders({commit}) {
-      let providersdata = (await axios.get("http://localhost:3000/providers")).data;
+      let providersdata = (await axios.get("api/providers")).data;
       commit('loadProviders', providersdata);
     },
     getCurrentClient({commit}, client) {
       const activeClient = Object.assign({}, client);
       commit('loadCurrentClient', activeClient);
     }
-  },
-  getters: {
-
-
-  },
-  modules: {}
+  }
 })

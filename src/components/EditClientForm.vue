@@ -67,14 +67,14 @@ export default {
     processForm() {
        let clientInfo = JSON.parse(JSON.stringify(this.currentClient));
        let p = clientInfo.providersIds;
-       let pArray = [];
+       let pArray = []; // initiate empty array for providers objects
        p.forEach(e => {
           e = Array.of(e);
-          e = Object.assign({}, e) 
+          e = Object.assign({}, e) // converts extracted IDs back to objects
           pArray.push(e)
        });
       pArray.forEach(e => {
-         e['id'] = e['0']
+         e['id'] = e['0'] //change default key 0 to id
          delete e['0']
       });
       clientInfo.providers = pArray;
@@ -84,8 +84,8 @@ export default {
 
     async updateClient(clientId) {
        const client = await this.processForm();
-       clientId = client.id
-       axios.put(`http://localhost:3000/clients/${clientId}`, client)
+       clientId = client._id
+       await axios.put(`api/clients/${clientId}`, client)
        this.$store.dispatch('getClients');
     },
  },

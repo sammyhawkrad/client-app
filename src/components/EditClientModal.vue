@@ -38,9 +38,9 @@ export default {
     ...mapState(['currentClient'])
   },
   methods: {
-    deleteClient(clientId) {
-       clientId = this.currentClient.id
-       axios.delete(`http://localhost:3000/clients/${clientId}`, this.currentClient)
+    async deleteClient(clientId) {
+       clientId = this.currentClient._id
+       await axios.delete(`api/clients/${clientId}`, this.currentClient)
        this.$store.dispatch('getClients');
     },
   }
