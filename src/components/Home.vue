@@ -93,3 +93,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#home {
+  margin-top: 10%;
+}
+</style>
